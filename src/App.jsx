@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import styled from 'styled-components'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import HomePage from './pages/HomePage'
+import ItenInfo from './pages/ItenInfo'
+import ManagePost from './pages/ManagePost'
+import AddPost from './pages/AddPost'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <PagesContainer>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/post/:id' element={<ItenInfo />} />
+        <Route path='/post/add' element={<AddPost />} />
+        <Route path='/post/edit' element={<ManagePost />} />
+      </Routes>
+      </BrowserRouter>
+    </PagesContainer>
   )
 }
 
 export default App
+
+const PagesContainer = styled.main`
+  background-color: lightgray;
+  width: calc(100vw - 50px);
+  max-height: 100vh;
+  padding: 25px;
+`
