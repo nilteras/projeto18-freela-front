@@ -6,22 +6,31 @@ import HomePage from './pages/HomePage'
 import ItenInfo from './pages/ItenInfo'
 import ManagePost from './pages/ManagePost'
 import AddPost from './pages/AddPost'
+import { useState } from 'react'
+import { TokenContext } from './context/TokenContext'
+import { UserContext } from './context/UserContext'
 
 
 function App() {
 
+  const [user, setUser] = useState({})
+  const [token, setToken] = useState({})
 
   return (
     <PagesContainer>
       <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<SignIn />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/home' element={<HomePage />} />
-        <Route path='/post/:id' element={<ItenInfo />} />
-        <Route path='/post/add' element={<AddPost />} />
-        <Route path='/post/edit' element={<ManagePost />} />
-      </Routes>
+        <TokenContext.Provider value={{ token, setToken }}>
+          <UserContext.Provider value={{user, setUser}}>
+            <Routes>
+              <Route path='/' element={<SignIn />} />
+              <Route path='/signup' element={<SignUp />} />
+              <Route path='/home' element={<HomePage />} />
+              <Route path='/post/:id' element={<ItenInfo />} />
+              <Route path='/post/add' element={<AddPost />} />
+              <Route path='/post/edit' element={<ManagePost />} />
+            </Routes>
+          </UserContext.Provider>
+        </TokenContext.Provider>
       </BrowserRouter>
     </PagesContainer>
   )

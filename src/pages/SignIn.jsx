@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components'
+import { UserContext } from "../context/UserContext";
+import { TokenContext } from "../context/TokenContext";
 
 export default function SignIn() {
 
@@ -9,6 +11,9 @@ export default function SignIn() {
     const [password, setPassword] = useState("")
     const BaseURL = import.meta.env.VITE_API_URL
     const navigate = useNavigate()
+    const {setUser} = useContext(UserContext)
+    const {setToken} = useContext(TokenContext)
+
 
     function loginUser(e) {
         e.preventDefault()
@@ -16,12 +21,14 @@ export default function SignIn() {
             email,
             password
         }
-        console.log(body)
 
       const promise = axios.post(`${BaseURL}/signin`, body)
 
         promise.then(res => {
-            console.log(res.data)
+            const {id, name, token} = res.data
+            setUser({id, name})
+            localStorage.setItem('token', token)
+            setToken(token)
             navigate("/home")
         })
         promise.catch(err => {

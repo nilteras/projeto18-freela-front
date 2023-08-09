@@ -1,20 +1,52 @@
 import styled from 'styled-components'
 import apolo from './../../public/assets/apolo.png'
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../context/UserContext'
+import { TokenContext } from '../context/TokenContext'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function HomePage() {
+
+    const { user } = useContext(UserContext)
+    const { token, setToken } = useContext(TokenContext)
+    const navigate = useNavigate()
+    const BaseURL = import.meta.env.VITE_API_URL
+    const [postInfo, setPostInfo] = useState([])
+
+    useEffect(() => {
+        if (localStorage.getItem('token' === undefined)) {
+            navigate("/")
+            return
+        }
+        const promise = axios.get(`${BaseURL}/posts`, {
+            headers:
+                { Authorization: `Bearer ${token}` }
+        })
+        promise.then(res => {
+            setPostInfo(res.data)
+        })
+        promise.catch(err => {
+            console.log(err.message)
+        })
+    }, [])
+    console.log(postInfo)
     return (
         <>
             <HomeContainer>
                 <TransactionsContainer>
                     <h1> DOGSTAR </h1>
-                  
-                    <ListItemContainer>
-                        <div>
-                            <img src={apolo} alt='' />
-                            <p>Nome: Apolo </p>
-                            <p>Talentos: O cachorro perfeito, corredor, nadador, parceiro</p>
-                        </div>
-                    </ListItemContainer>
+                    <h1>Olá, {user.name}</h1>
+                    {postInfo.map((p) => (
+                        <ListItemContainer key={p.id}>
+                            <div>
+                                <img src={p.image} alt='' />
+                                <p>Nome: {p.name_dog} </p>
+                                <p>Talentos: {p.description}</p>
+                            </div>
+                        </ListItemContainer>
+                    ))}
+
                 </TransactionsContainer>
             </HomeContainer>
         </>
