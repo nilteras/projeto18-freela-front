@@ -1,5 +1,6 @@
+import axios from "axios"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 
 export default function SignUp() {
@@ -10,6 +11,8 @@ export default function SignUp() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const BaseURL = import.meta.env.VITE_API_URL
+    const navigate = useNavigate()
 
     function createUser(e) {
         e.preventDefault()
@@ -22,6 +25,24 @@ export default function SignUp() {
             confirmPassword
         }
         console.log(body)
+
+        const promise = axios.post(`${BaseURL}/signup`, body)
+        console.log(promise)
+
+        promise.then(res => {
+            console.log(res)
+            navigate("/")
+        })
+        promise.catch(err => {
+            console.log(err)
+            alert(err.response.data)
+            setName("")
+            setCpf("")
+            setPhone("")
+            setEmail("")
+            setPassword("")
+            setConfirmPassword("")
+        })
     }
 
     return (
