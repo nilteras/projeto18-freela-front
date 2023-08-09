@@ -24,7 +24,19 @@ export default function SignUp() {
             password,
             confirmPassword
         }
-        console.log(body)
+       
+
+        if(body.cpf.length < 11 || body.cpf.length > 11){
+            return alert("CPF deve conter 11 digitos");
+        }
+
+        if(body.phone.length < 10 || body.cpf.length > 11){
+            return alert("Insira um número de telefone válido");
+        }
+
+        if(body.password !== body.confirmPassword){
+            return alert("As senhas devem ser iguais");
+        }
 
         const promise = axios.post(`${BaseURL}/signup`, body)
         console.log(promise)
