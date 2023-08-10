@@ -28,7 +28,6 @@ export default function SignIn() {
             const {id, name, token} = res.data
             setUser({id, name})
             localStorage.setItem('token', token)
-            console.log(token)
             setToken(token)
             navigate("/home")
         })

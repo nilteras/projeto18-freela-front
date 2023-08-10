@@ -1,8 +1,7 @@
 import axios from "axios"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import styled from 'styled-components'
-import { TokenContext } from "../context/TokenContext"
 
 export default function SignUp() {
 
@@ -14,7 +13,6 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState("")
     const BaseURL = import.meta.env.VITE_API_URL
     const navigate = useNavigate()
-    const {token} = useContext(TokenContext)
 
     function createUser(e) {
         e.preventDefault()
