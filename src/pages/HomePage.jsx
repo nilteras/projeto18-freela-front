@@ -19,6 +19,7 @@ export default function HomePage() {
             navigate("/")
             return
         }
+        console.log(token)
         const promise = axios.get(`${BaseURL}/posts`, {
             headers:
                 { Authorization: `Bearer ${token}` }
@@ -30,13 +31,18 @@ export default function HomePage() {
             console.log(err.message)
         })
     }, [])
-    console.log(postInfo)
+   
     return (
         <>
             <HomeContainer>
                 <TransactionsContainer>
                     <h1> DOGSTAR </h1>
                     <h1>Olá, {user.name}</h1>
+                    <BotaoADD onClick={() => {
+                        navigate('/post-add')
+                    }}>
+                        <p>+ Adicionar um DogStar</p>
+                    </BotaoADD>
                     {postInfo.map((p) => (
                         <ListItemContainer key={p.id}>
                             <div>
@@ -92,4 +98,10 @@ const ListItemContainer = styled.li`
     width: 60px;
     height: 60px;
   }
+`
+
+export const BotaoADD = styled.div`
+    background-color: white;
+    width: 180px;
+    height: 30px;
 `
