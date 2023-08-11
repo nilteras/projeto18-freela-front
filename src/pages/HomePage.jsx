@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import apolo from './../../public/assets/apolo.png'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import { TokenContext } from '../context/TokenContext'

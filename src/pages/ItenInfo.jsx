@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from 'styled-components'
-import apolo from './../../public/assets/apolo.png'
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
@@ -14,6 +13,7 @@ export default function ItenInfo() {
 
     const location = useLocation();
     const postData = location.state;
+
 
     useEffect(() => {
         const promise = axios.get(`${BaseURL}/posts/${postData.id}`)
@@ -34,8 +34,8 @@ export default function ItenInfo() {
                         <img src={postInfo.image} alt="" />
                         <h1>{postInfo.name_dog}</h1>
                         <p>{postInfo.description}</p>
-                        <p>Tutor: Fulano</p>
-                        <p>Telefone para serviços: 6199999999</p>
+                        <p>Tutor: {postInfo.name}</p>
+                        <p>Telefone para serviços: {postInfo.phone}</p>
                     </div>
 
                 <Link to={'/home'}>
