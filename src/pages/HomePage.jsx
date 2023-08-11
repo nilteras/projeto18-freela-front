@@ -32,6 +32,12 @@ export default function HomePage() {
         })
     }, [])
    
+    function infoPost(postData){
+        navigate(`/post/${postData.id}`, { state: postData})
+        
+    }
+
+
     return (
         <>
             <HomeContainer>
@@ -44,7 +50,7 @@ export default function HomePage() {
                         <p>+ Adicionar um DogStar</p>
                     </BotaoADD>
                     {postInfo.map((p) => (
-                        <ListItemContainer key={p.id}>
+                        <ListItemContainer key={p.id} onClick={() => infoPost(p)}>
                             <div>
                                 <img src={p.image} alt='' />
                                 <p>Nome: {p.name_dog} </p>
