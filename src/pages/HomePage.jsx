@@ -12,13 +12,13 @@ export default function HomePage() {
     const navigate = useNavigate()
     const BaseURL = import.meta.env.VITE_API_URL
     const [postInfo, setPostInfo] = useState([])
-
+    console.log(user)
     useEffect(() => {
         if (localStorage.getItem('token' === undefined)) {
             navigate("/")
             return
         }
-        console.log(token)
+        
         const promise = axios.get(`${BaseURL}/posts`, {
             headers:
                 { Authorization: `Bearer ${token}` }
@@ -48,6 +48,12 @@ export default function HomePage() {
                     }}>
                         <p>+ Adicionar um DogStar</p>
                     </BotaoADD>
+                    <BotaoADD onClick={() => {
+                        navigate(`/posts/edit/${user.id}`)
+                    }}>
+                        <p>Gerenciar posts</p>
+                    </BotaoADD>
+                    
                     {postInfo.map((p) => (
                         <ListItemContainer key={p.id} onClick={() => infoPost(p)}>
                             <div>
@@ -103,10 +109,12 @@ const ListItemContainer = styled.li`
     width: 60px;
     height: 60px;
   }
+  cursor: pointer;
 `
 
 export const BotaoADD = styled.div`
     background-color: white;
     width: 180px;
     height: 30px;
+    cursor: pointer;
 `

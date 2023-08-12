@@ -27,7 +27,7 @@ function App() {
               <Route path='/home' element={<HomePage />} />
               <Route path='/post/:id' element={<ItenInfo />} />
               <Route path='/post-add' element={<AddPost />} />
-              <Route path='/post/edit' element={<ManagePost />} />
+              <Route path='/posts/edit/:id' element={<ManagePost />} />
             </Routes>
           </UserContext.Provider>
         </TokenContext.Provider>
