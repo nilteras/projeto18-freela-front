@@ -36,7 +36,7 @@ export default function HomePage() {
 
     }
 
-
+    console.log(postInfo)
     return (
         <>
             <HomeContainer>
@@ -62,7 +62,7 @@ export default function HomePage() {
 
                     {postInfo.map((p) => (
                         <PostContainer key={p.id} onClick={() => infoPost(p)}>
-                            <div>
+                             <div>
                                 <img src={p.image} alt='' />
                                 <p>Nome: {p.name_dog} </p>
                                 <p>Talentos: {p.description}</p>

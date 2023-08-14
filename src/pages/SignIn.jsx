@@ -34,7 +34,7 @@ export default function SignIn() {
         promise.catch(err => {
             alert(err.response.data)
             setEmail("")
-            setSenha("")
+            setPassword("")
         })
 
 
