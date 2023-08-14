@@ -9,6 +9,7 @@ import AddPost from './pages/AddPost'
 import { useState } from 'react'
 import { TokenContext } from './context/TokenContext'
 import { UserContext } from './context/UserContext'
+import { Header } from './components/Header'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   return (
     <PagesContainer>
       <BrowserRouter>
+      <Header />
         <TokenContext.Provider value={{ token, setToken }}>
           <UserContext.Provider value={{user, setUser}}>
             <Routes>

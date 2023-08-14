@@ -30,13 +30,16 @@ export default function ItenInfo() {
     return (
         <>
             <HomeContainer>
+                <PostContainer>
+                    <img src={postInfo.image} alt="" />
+                    <h1>{postInfo.name_dog}</h1>
+                    <p>{postInfo.description}</p>
                     <div>
-                        <img src={postInfo.image} alt="" />
-                        <h1>{postInfo.name_dog}</h1>
-                        <p>{postInfo.description}</p>
-                        <p>Tutor: {postInfo.name}</p>
-                        <p>Telefone para serviços: {postInfo.phone}</p>
+                        <h2>Tutor: {postInfo.name}</h2>
+                        <h2>Telefone para serviços: {postInfo.phone}</h2>
                     </div>
+
+                </PostContainer>
 
                 <Link to={'/home'}>
                     Voltar
@@ -47,11 +50,49 @@ export default function ItenInfo() {
 }
 
 const HomeContainer = styled.div`
+margin-top: 100px;
+padding-top: 60px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: calc(100vh - 50px);
-  img {
-    width: 400px;
-    height: 350px;
+  background-color: #fff;
+  
+`
+
+const PostContainer = styled.div`
+   
+    box-shadow: 2px 4px 6px 4px #0000001A;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+
+    img {
+    width: 480px;
+    height: 430px;
   }
+    h1 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #000;
+    }
+    div {
+        margin-top: 20px;
+        height: 60px;
+        background-color: #1e5377;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h2 {
+        margin-top: 8px;
+        font-weight: 700;
+        color: #fff;
+        font-size: 20px;
+    }
+
 `

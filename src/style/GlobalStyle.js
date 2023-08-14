@@ -6,14 +6,17 @@ const GlobalStyle = createGlobalStyle`
         font-style: normal;
         font-weight: 400;
     }
+    body {
+        background-color: #fff;
+    }
     button {
         outline: none;
         border: none;
         border-radius: 5px;
-        background-color: #000;
+        background-color: #48B3FE;
         font-size: 20px;
         font-weight: 600;
-        color: #fff;
+        color: white;
         cursor: pointer;
         width: 100%;
         padding: 12px;
@@ -49,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 700;
         font-size: 15px;
         line-height: 18px;
-        color: white;
+        color: #1e5377;
         text-decoration: none;
         padding-top: 30px;
     }

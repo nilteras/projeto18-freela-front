@@ -46,18 +46,20 @@ export default function ManagePost() {
     return (
         <>
             <HomeContainer>
-                <TransactionsContainer>
-                    <h1> DOGSTAR </h1>
+                <MenuContainer>
                     <h1>Olá, {user.name}</h1>
+                </MenuContainer>
+                <ListContainer>
+
 
                     {postInfo.map((p) => (
-                        <ListItemContainer key={p.id}>
+                        <PostContainer key={p.id}>
                             <div>
                                 <img src={p.image} alt='' />
                                 <p>Nome: {p.name_dog} </p>
                                 <p>Talentos: {p.description}</p>
                                 <label>
-                                    Disponível:
+                                    <h2>Disponível:</h2>
                                     <input
                                         type="checkbox"
                                         checked={availability[p.id] || false}
@@ -71,41 +73,78 @@ export default function ManagePost() {
                                 </label>
                             </div>
 
-                        </ListItemContainer>
+                        </PostContainer>
                     ))}
-                    <BotaoADD onClick={saveChanges}>
-                        <p>Salvar alterações</p>
-                    </BotaoADD>
-                   
-                </TransactionsContainer>
+
+
+                </ListContainer>
+                <button onClick={saveChanges}>
+                    <p>Salvar alterações</p>
+                </button>
+                <button >
+                    <Link to={'/home'}>
+                        Voltar
+                    </Link>
+                </button>
             </HomeContainer>
         </>
     )
 }
 
 const HomeContainer = styled.div`
+margin-top: 120px;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 50px);
+  background-color: #fff;
+button {
+    margin-top: 5px;
+}
 `
-const TransactionsContainer = styled.article`
-  flex-grow: 1;
-  background-color: gray;
-  color: #000;
-  border-radius: 5px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  article {
+const ListContainer = styled.div`
+    width: calc(100% - 700px);
     display: flex;
-    justify-content: space-between;   
-    strong {
-      font-weight: 700;
-      text-transform: uppercase;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 20px;
+    padding: 10px;
+  
+    p {
+        color: #1E5377;
+        font-size: 18px;
     }
-  }
 `
+const PostContainer = styled.div`
+    width: 200px;
+    height: 210px;
+    box-shadow: 2px 4px 6px 4px #0000001A;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+
+    img {
+        width: 130px;
+        height: 130px;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    label {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-around;
+    }
+    h2 {
+    
+        color: #1E5377;
+    }
+  cursor: pointer;
+`
+
 const ListItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
@@ -125,9 +164,10 @@ const ListItemContainer = styled.li`
   cursor: pointer;
 `
 
-export const BotaoADD = styled.div`
-    background-color: white;
-    width: 180px;
-    height: 30px;
-    cursor: pointer;
+
+export const MenuContainer = styled.div`
+    width: 100%;
+    display: flex;
+    background-color: #48B3FE;
+    
 `
